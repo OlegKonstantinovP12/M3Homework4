@@ -8,12 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = ContentViewModel()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ForEach(viewModel.news) { note in
+                NewsView(title: note.title, description: note.description)
+            }
+            Spacer()
+            Button {
+                viewModel.refresh()
+            } label: {
+                HStack {
+                    Text("Обновить ленту")
+                        .foregroundStyle(.white)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical)
+                .background(.black)
+            }
         }
         .padding()
     }
