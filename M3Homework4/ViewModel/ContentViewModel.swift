@@ -10,6 +10,7 @@ import Combine
 
 class ContentViewModel: ObservableObject {
     @Published var news: [News] = []
+    
     private let networkManager = NetworkManager()
     
     private func getAllNews() {
